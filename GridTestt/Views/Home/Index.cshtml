@@ -1,0 +1,467 @@
+﻿@{
+ViewBag.Title = "Grid";
+}
+
+<link href="~/css/Grid.css" rel="stylesheet" type="text/css"/>
+
+<div class="menu">
+    <h2>Grid</h2>
+    <div class="controlPanel">
+        Панель управления, в будущем возможно добавлю какие нибудь компоненты управления
+    </div>
+</div>
+
+<table id="grid">
+    <thead>
+    <tr>
+        <th id="id" data-column="Id" class="sortable">Id
+            <div class="custom-select">
+                <div class="select-header" data-filter-column="Id">
+                    <div class="select-selected">+</div>
+                    <div class="select-dropdown select-hide" data-filter-column="Id">
+                        <!-- Здесь будут чекбоксы для выбора значений -->
+                    </div>
+                </div>
+                <input type="hidden" name="selected-option" >
+            </div>
+        </th>
+        <th id="name" data-column="Name" class="sortable">Name
+            <div class="custom-select">
+                <div class="select-header" data-filter-column="Name">
+                    <div class="select-selected">+</div>
+                    <div class="select-dropdown select-hide" data-filter-column="Name">
+                        <!-- Здесь будут чекбоксы для выбора значений -->
+                    </div>
+                </div>
+                <input type="hidden" name="selected-option" >
+            </div>
+        </th>
+        <th id="age" data-column="Age" class="sortable">Age
+            <div class="custom-select">
+                <div class="select-header" data-filter-column="Age">
+                    <div class="select-selected">+</div>
+                    <div class="select-dropdown select-hide" data-filter-column="Age">
+                        <!-- Здесь будут чекбоксы для выбора значений -->
+                    </div>
+                </div>
+                <input type="hidden" name="selected-option" >
+            </div>
+        </th>
+        <th id="birthDay" data-column="BirthDay" class="sortable">Birthday
+            <div class="custom-select">
+                <div class="select-header" data-filter-column="BirthDay">
+                    <div class="select-selected">+</div>
+                    <div class="select-dropdown select-hide" data-filter-column="BirthDay">
+                        <!-- Здесь будут чекбоксы для выбора значений -->
+                    </div>
+                </div>
+                <input type="hidden" name="selected-option">
+            </div>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <select class="filter-method" data-filter-column="Id">
+                <option value="equals">Равно</option>
+                <option value="notEquals">Не равно</option>
+                <option value="greaterThan">Больше</option>
+                <option value="greaterThanOrEquals">Больше или равно</option>
+                <option value="lessThan">Меньше</option>
+                <option value="lessThanOrEquals">Меньше или равно</option>
+            </select>
+
+            <input type="text" class="filter-input" data-filter-column="Id" placeholder="Фильтр по ID">
+        </th>
+        <th>
+            <select class="filter-method" data-filter-column="Name">
+                <option value="contains">Содержит</option>
+                <option value="equals">Равно</option>
+                <option value="notEquals">Не равно</option>
+            </select>
+
+            <input type="text" data-filter-column="Name" placeholder="Фильтр по имени">
+        </th>
+        <th>
+            <select class="filter-method" data-filter-column="Age">
+                <option value="equals">Равно</option>
+                <option value="notEquals">Не равно</option>
+                <option value="greaterThan">Больше</option>
+                <option value="greaterThanOrEquals">Больше или равно</option>
+                <option value="lessThan">Меньше</option>
+                <option value="lessThanOrEquals">Меньше или равно</option>
+            </select>
+            <input type="number" data-filter-column="Age" placeholder="Фильтр по возрасту">
+        </th>
+        <th>
+            <select class="filter-method" data-filter-column="BirthDay">
+                <option value="equals">Равно</option>
+                <option value="notEquals">Не равно</option>
+                <option value="greaterThan">Больше</option>
+                <option value="greaterThanOrEquals">Больше или равно</option>
+                <option value="lessThan">Меньше</option>
+                <option value="lessThanOrEquals">Меньше или равно</option>
+                <option value="between">Диапазон</option>
+            </select>
+            <input  type="date" class="inputDate solo" data-filter-column="BirthDay" placeholder="">
+            <input id="firstDateInput" type="date" class="inputDate first" data-filter-column="BirthDay" placeholder=""><input id="lastDateInput" type="date" class="inputDate last" data-filter-column="BirthDay" placeholder="">
+        </th>
+    </tr>
+    </thead>
+    <tbody id="grid-body"></tbody>
+    <tfoot>
+    <tr>
+        <th colspan="2">@*<div id="total-count"></div>*@</th>
+        <th colspan="2"><div id="average-age"></div></th>
+    </tr>
+    </tfoot>
+</table>
+
+<div class="main-grid-bottom-panels">
+    
+    <div class="main-grid-nav-panel">
+
+        <div class="grid-counter">
+            
+        </div>
+        
+        <div class="pagination">
+            <div id="lines-selected"></div>
+            <div id="total-count"></div>
+            <div class="page-controls">
+                <button class="first"><<</button>
+                <button class="prev"><</button>
+                <div class="page-numbers"></div>
+                <button class="next">></button>
+                <button class="last">>></button>
+            </div>
+            <div class="rowsPerPageSelect">
+                <select class="rows-per-page-select">
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="all">Все</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-grid-action-panel-grid">
+        <div class="main-grid-control-panel-wrap">
+            <button class="remove">Удалить</button>
+            <button class="edit">Редактировать</button>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+
+        //открытие дропдауна
+        $(document).on('click', '.select-header', function() {
+            const dropdown = $(this).find('.select-dropdown');
+            $('.select-dropdown').not(dropdown).addClass('select-hide').hide();
+            dropdown.toggleClass('select-hide').toggle();
+        });
+
+        //закрытие дропдауна
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('.custom-select').length) {
+                $('.select-dropdown').addClass('select-hide').hide();
+            }
+        });
+
+        //загрузка уникальных данных
+        function loadUniqueValues(column, isDate = false) {
+            console.log(`Loading unique values for column: ${column}`);
+            $.get('/Home/GetUniqueValues', { column: column }, function(data) {
+                if (data.success) {
+                    console.log(`Successfully loaded unique values for column: ${column}`);
+                    fillSelect(`.select-dropdown[data-filter-column="${column}"]`, data.values, isDate);
+                } else {
+                    console.error(`Failed to load unique values for column ${column}: ${data.message}`);
+                }
+            }).fail(function() {
+                console.error(`Failed to load unique values for column ${column}`);
+            });
+        }
+
+
+
+        // Функция для удаления значения из фильтра
+        function removeFilterValue(column, value) {
+            if (filters[column]) {
+                const index = filters[column].indexOf(value);
+                if (index !== -1) {
+                    filters[column].splice(index, 1);
+                }
+            }
+        }
+
+        $(document).on('click', '.select-dropdown input[type="checkbox"]', function(event) {
+            event.stopPropagation();
+        });
+
+
+
+        //заполнение фильтров данными
+        function fillSelect(selector, values, isDate = false) {
+            console.log(`Filling select: ${selector}`);
+            const select = $(selector);
+            values.forEach(value => {
+                let displayValue = value;
+                if (isDate) {
+                    const date = new Date(value);
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const year = date.getFullYear();
+                    displayValue = `${day}.${month}.${year}`;
+                }
+                select.append($('<div>').append($('<input type="checkbox">').val(value)).append($('<label>').text(displayValue)));
+            });
+        }
+
+        $(document).on('change', '.select-dropdown input[type="checkbox"]', function() {
+            const column = $(this).closest('.select-dropdown').data('filter-column');
+            const selectedValues = [];
+
+            $(this).closest('.select-dropdown').find('input[type="checkbox"]:checked').each(function() {
+                selectedValues.push($(this).val());
+            });
+
+            // Создаем словарь с текущим фильтром
+            const newFilter = {};
+            newFilter[column] = { method: 'in', value: selectedValues };
+
+            // Проверяем, существует ли уже фильтр с данным ключом
+            let existingFilterIndex = -1;
+            for (let i = 0; i < filterArrays.length; i++) {
+                if (filterArrays[i][column]) {
+                    existingFilterIndex = i;
+                    break;
+                }
+            }
+
+            if (existingFilterIndex !== -1) {
+                // Обновляем существующий фильтр, добавляя новые значения
+                filterArrays[existingFilterIndex][column].value = selectedValues;
+            } else {
+                // Иначе добавляем новый фильтр в массив
+                filterArrays.push(newFilter);
+            }
+
+            // Преобразуем filterArrays в строку JSON
+            const filterArraysJSON = JSON.stringify(filterArrays);
+
+            console.log('filterArrays', filterArraysJSON);
+
+            loadData(); // Загружаем данные с учетом новых фильтров
+        });
+
+        loadUniqueValues("Id");
+        loadUniqueValues("Name");
+        loadUniqueValues("Age");
+        loadUniqueValues("BirthDay", true);
+    });
+
+    let rowsPerPage = 3;
+    let currentPage = 1;
+    let sortColumn = '';
+    let sortAscending = true;
+    let filters = {};
+    let filterArrays = [];
+    let totalItems = 0;
+    let selectedValues = []; // Инициализация переменной
+
+    $(document).ready(function () {
+        loadData();
+
+        $('#grid').on('click', 'th.sortable', function(e) {
+            if (!$(e.target).closest('.custom-select').length) {
+                sortColumn = $(this).data('column');
+                sortAscending = !sortAscending;
+                $('#grid .sortable').removeClass('asc desc');
+                $(this).addClass(sortAscending ? 'asc' : 'desc');
+                currentPage = 1;
+                loadData();
+            }
+        });
+
+        $('.pagination').on('click', '.page', function() {
+            currentPage = parseInt($(this).text());
+            loadData();
+        });
+
+        $('.pagination .prev').on('click', function() {
+            if (currentPage > 1) {
+                currentPage--;
+                loadData();
+            }
+        });
+
+        $('.pagination .next').on('click', function() {
+            if (currentPage < Math.ceil(totalItems / rowsPerPage)) {
+                currentPage++;
+                loadData();
+            }
+        });
+
+        $('.pagination .first').on('click', function() {
+            currentPage = 1;
+            loadData();
+        });
+
+        $('.pagination .last').on('click', function() {
+            currentPage = Math.ceil(totalItems / rowsPerPage);
+            loadData();
+        });
+
+        $('.rows-per-page-select').on('change', function () {
+            const selectedValue = $(this).val();
+            rowsPerPage = selectedValue === 'all' ? totalItems : parseInt(selectedValue);
+            currentPage = 1;
+            loadData();
+        });
+
+        $('#grid thead input').on('focusout', function() {
+            const filterColumn = $(this).data('filter-column');
+            const filterValue = $(this).val();
+            const filterMethod = $(`select[data-filter-column='${filterColumn}']`).val();
+            filters[filterColumn] = { method: filterMethod, value: filterValue };
+            currentPage = 1;
+            loadData();
+        });
+
+        $(document).on('focusout', '#firstDateInput, #lastDateInput', function() {
+            const column = $(this).data('filter-column');
+            const firstDate = $('#firstDateInput').val();
+            const lastDate = $('#lastDateInput').val();
+
+            // Создаем словарь с текущим фильтром
+            const newFilter = {};
+            newFilter[column] = { method: 'between', value: [firstDate, lastDate] };
+
+            // Проверяем, существует ли уже фильтр с данным ключом
+            let existingFilterIndex = -1;
+            for (let i = 0; i < filterArrays.length; i++) {
+                if (filterArrays[i][column]) {
+                    existingFilterIndex = i;
+                    break;
+                }
+            }
+
+            if (existingFilterIndex !== -1) {
+                // Обновляем существующий фильтр, добавляя новые значения
+                filterArrays[existingFilterIndex][column].value = [firstDate, lastDate];
+            } else {
+                // Иначе добавляем новый фильтр в массив
+                filterArrays.push(newFilter);
+            }
+
+            // Преобразуем filterArrays в строку JSON
+            const filterArraysJSON = JSON.stringify(filterArrays);
+
+            console.log('filterArrays', filterArraysJSON);
+
+            loadData(); // Загружаем данные с учетом новых фильтров
+        });
+
+
+        $('#grid thead select').on('change', function() {
+            const filterColumn = $(this).data('filter-column');
+            const filterMethod = $(this).val();
+            const filterValue = $(`input[data-filter-column='${filterColumn}']`).val();
+            if (filterMethod === 'between') {
+                $('.inputDate.first, .inputDate.last').show();
+                $('.inputDate.solo').hide();
+            } else {
+                $('.inputDate.solo').show();
+                $('.inputDate.first, .inputDate.last').hide();
+            }
+
+        });
+
+    });
+    console.log(filters);
+    console.log({
+        sortColumn: sortColumn,
+        ascending: sortAscending,
+        filterColumn: filterColumns,
+        filterMethod: filterMethods,
+        filterValue: filterValues,
+        page: currentPage,
+        pageSize: rowsPerPage,
+        filterArrays: JSON.stringify(filterArrays)
+    });
+
+    function loadData() {
+        const filterMethods = Object.keys(filters).map(key => filters[key].method).join(',');
+        const filterValues = Object.keys(filters).map(key => {
+            const value = filters[key].value;
+            return Array.isArray(value) ? value.join('|') : value;
+        }).join(',');
+        const filterColumns = Object.keys(filters).join(',');
+
+        $.ajax({
+            url: '@Url.Action("GetGirdData")',
+            data: {
+                sortColumn: sortColumn,
+                ascending: sortAscending,
+                filterColumn: filterColumns,
+                filterMethod: filterMethods,
+                filterValue: filterValues,
+                page: currentPage,
+                pageSize: rowsPerPage,
+                filterArrays: JSON.stringify(filterArrays)
+            },
+            success: function(response) {
+
+                const data = response.data;
+                $('#grid-body').empty();
+                let ageSum = 0;
+                $.each(data, function(index, item) {
+                    const formattedDate = new Date(item.birthDay).toLocaleDateString('ru-RU');
+                    $('#grid-body').append(`<tr>
+                <td>${item.id}</td>
+                <td>${item.name}</td>
+                <td>${item.age}</td>
+                <td>${formattedDate}</td>
+            </tr>`);
+                    ageSum += item.age;
+                });
+
+                totalItems = response.totalCount;
+                $('#average-age').text('Сред.: ' + Math.round(response.averageAge));
+                updatePagination(totalItems);
+                $('#total-count').text('Всего: '+ totalItems);
+                $('#lines-selected').text('Отмечено: ' + selectedValues.length);
+            },
+            error: function() {
+                alert('Error loading data.');
+            }
+        });
+    }
+
+
+
+    function updatePagination(totalItems) {
+        let totalPages = Math.ceil(totalItems / rowsPerPage);
+        let pageNumbers = $('.page-numbers');
+        pageNumbers.empty();
+
+        for (let i = 1; i <= totalPages; i++) {
+            if (i === currentPage) {
+                pageNumbers.append(`<button class="page active" disabled>${i}</button>`);
+            } else {
+                pageNumbers.append(`<button class="page">${i}</button>`);
+            }
+        }
+
+        $('.pagination .prev').prop('disabled', currentPage <= 1);
+        $('.pagination .next').prop('disabled', currentPage >= totalPages);
+        $('.pagination .first').prop('disabled', currentPage <= 1);
+        $('.pagination .last').prop('disabled', currentPage >= totalPages);
+    }
+
+</script>

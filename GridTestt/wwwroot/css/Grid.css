@@ -1,0 +1,302 @@
+/* Grid.css */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+th.sortable {
+    cursor: pointer;
+    background-color: #f2f2f2;
+}
+
+th.sortable:hover {
+    background-color: #e9e9e9;
+}
+
+th.sortable:after {
+    content: '\25B2' '\25BC'; /* Стрелки вниз и наверх */
+    float: right;
+    margin-left: 5px;
+    opacity: 0.5;
+}
+
+th.sortable.asc:after {
+    content: '\25B2'; /* Стрелка наверх */
+}
+
+th.sortable.desc:after {
+    content: '\25BC'; /* Стрелка вниз */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between; /* Пространство между элементами */
+    align-items: center; /* Выравнивание по вертикали */
+    margin: 20px 0;
+}
+
+.pagination .page-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* Расширение блока, чтобы занять пространство */
+}
+
+.pagination button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination .page-numbers button {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.pagination .page-numbers button:hover {
+    background-color: #ddd;
+}
+
+.pagination .page-numbers button.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination .rowsPerPageSelect {
+    margin-left: auto; /* Автоматический отступ слева */
+}
+
+.rows-per-page-select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+.filter-method {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px;
+}
+
+#grid thead th input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+}
+
+#grid .inputDate {
+    cursor: pointer;
+    width: 100%;
+}
+
+.inputDate.solo {
+    width: 100%;
+}
+
+
+
+.inputDate.first,
+.inputDate.last {
+    display: none;
+    width: 45% !important;
+}
+.inputDate.first {
+    margin-right: 5%; /* Добавим небольшое отступание между инпутами */
+}
+
+.menu {
+    display: flex;
+    padding: 10px;
+}
+
+.menu .controlPanel {
+    max-width: 800px;
+    min-width: 400px;
+    height: 50px;
+    margin: auto;
+    align-content: center;
+    text-align: center;
+    border: 2px solid #4CAF50;
+    padding: inherit;
+}
+
+.filter-method {
+    width: 100%;
+    margin: 5px 0px;
+}
+
+tr.selected {
+    background-color: #cce5ff;
+}
+
+.main-grid-action-panel {
+    border-top: 2px solid #eef2f4;
+}
+
+.main-grid-control-panel-wrap {
+    position: relative;
+}
+
+#total-count{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#lines-selected{
+    width: 200px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+.main-grid-control-panel-wrap button.remove{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.main-grid-control-panel-wrap button.edit{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.custom-select {
+    position: relative;
+    display: inline-block;
+    width: 50px; /* Ширина выпадающего списка */
+}
+
+.select-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Выравнивание элементов по горизонтали */
+    cursor: pointer;
+}
+
+.select-selected {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    width: 100%; /* Занимает всю ширину контейнера */
+    box-sizing: border-box;
+    inline-size: max-content;
+}
+
+.select-dropdown {
+    position: absolute;
+    background-color: #f4f4f4;
+    display: none;
+    padding: 0px;
+    border: 1px solid #ccc;
+    border-top: none;
+    width: calc(400% - 2px); /* Занимает всю ширину контейнера, за вычетом границ */
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1;
+    top: 100%; /* Раскрывается под заголовком */
+    box-sizing: border-box;
+    margin-top: 10px; /* Добавляем отступ сверху */
+}
+
+.select-dropdown div {
+    display: -webkit-box;
+    align-items: center;
+    padding: 5px 10px;
+    justify-content: space-between;
+}
+
+.select-dropdown label{
+    display: block;
+    margin-left: 15px;
+}
+
+.select-dropdown div input[type="checkbox"] {
+    margin-right: 5px;
+    
+}
+
+.select-dropdown div:hover {
+    background-color: #ddd;
+}
+
+.select-dropdown button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: calc(100% - 20px); /* Ширина кнопки за вычетом внутренних отступов */
+}
+
+/* Фиксация кнопок внизу */
+.select-dropdown .button-container {
+    position: absolute;
+    bottom: 10px; /* Отступ от нижнего края */
+    left: 10px; /* Отступ от левого края */
+    right: 10px; /* Отступ от правого края */
+}
+
+.select-hide {
+    display: none;
+}

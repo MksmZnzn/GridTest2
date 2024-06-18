@@ -1,0 +1,9 @@
+C:\Users\Макс\RiderProjects\GridTest2\GridTest2\obj\Debug\net8.0\GridTest2.csproj.AssemblyReference.cache
+C:\Users\Макс\RiderProjects\GridTest2\GridTest2\obj\Debug\net8.0\GridTest2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Макс\RiderProjects\GridTest2\GridTest2\obj\Debug\net8.0\GridTest2.AssemblyInfoInputs.cache
+C:\Users\Макс\RiderProjects\GridTest2\GridTest2\obj\Debug\net8.0\GridTest2.AssemblyInfo.cs
+C:\Users\Макс\RiderProjects\GridTest2\GridTest2\obj\Debug\net8.0\GridTest2.csproj.CoreCompileInputs.cache
+C:\Users\Макс\RiderProjects\GridTest2\GridTest2\obj\Debug\net8.0\GridTest2.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Макс\RiderProjects\GridTest2\GridTest2\obj\Debug\net8.0\GridTest2.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Макс\RiderProjects\GridTest2\GridTest2\obj\Debug\net8.0\GridTest2.RazorAssemblyInfo.cache
+C:\Users\Макс\RiderProjects\GridTest2\GridTest2\obj\Debug\net8.0\GridTest2.RazorAssemblyInfo.cs
